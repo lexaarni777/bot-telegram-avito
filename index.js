@@ -8,32 +8,124 @@ const bot = new TelegramBot(token, { polling: true });
 
 // Клавиатура с кнопками
 function showMainMenu(chatId) {
+    const photoUrl = 'https://sun9-61.userapi.com/impg/tKEeq8GTVrv_41_QCM1JEa2ppIqEnNAfDo8qaA/tT8e4gsINUQ.jpg?size=1261x473&quality=95&sign=41f98123fdc7990e0e624ebb72448f83&type=album'; 
     const options = {
       reply_markup: {
         inline_keyboard: [
-          [{ text: 'Просмотр фотографий', callback_data: 'photo' }],
-          [{ text: 'Показать местоположение', callback_data: 'location' }],
-          [{ text: 'Забронировать', callback_data: 'book' }],
+          [{ text: 'ул. Кирочная д.11 (ВИНТАЖ)', callback_data: 'kirr11v' }],
+          [{ text: 'ул. Кирочная д.11 (ЛОФТ)', callback_data: 'kirr11l' }]
           // Добавьте другие кнопки основного меню, если нужно
         ]
       }
     };
-  
-    bot.sendMessage(chatId, 'Выберите опцию:', options);
+    bot.sendPhoto(chatId, photoUrl)
+    .then(() => {
+        // После успешной отправки фотографии отправляем главное меню
+        bot.sendMessage(chatId, 'Для продолжения выберите Ваши апартаменты:', options);
+    })
+    .catch(error => {
+        console.log(error); // Логируем ошибку, если что-то пошло не так
+        bot.sendMessage(chatId, 'Произошла ошибка при отправке фотографии.');
+    });
 };
 
+function showApartmentMenukirr11v(chatId) {
+  
+  const options = {
+      reply_markup: {
+          inline_keyboard: [
+              [{ text: 'Wi-Fi', callback_data: 'wifi' }],
+              [{ text: 'Инструкция по размещению', callback_data: 'ruleskirr11v' }],
+              [{ text: 'Контакты', callback_data: 'contacts' }],
+              [{ text: 'Вернуться в основное меню', callback_data: 'backToMenu' }]
+          ]
+      }
+  };
+
+  bot.sendMessage(chatId, 'ул. Кирочная д.11 (ВИНТАЖ)\nВыберите необходимый пункт меню:', options);
+};
+
+function showMainshowApartmentMenuruleskirr11l(chatId) {
+  const photoUrl = 'https://sun9-25.userapi.com/impg/xx9MKtITcOpFU8ci4-9dxAfJIS5DCQjF-tmokg/H8j0xQ2-4_Y.jpg?size=707x2160&quality=95&sign=e0821df54df3ac15a670db375271e412&type=album'; 
+  
+  bot.sendPhoto(chatId, photoUrl)
+  .then(() => {
+      // После успешной отправки фотографии отправляем главное меню
+      bot.sendMessage(chatId, 'Выберете опцию',{
+        reply_markup: {
+            inline_keyboard: [
+                [{ text: 'Вернуться назад', callback_data: 'kirr11l' }]
+            ]
+        }
+    })
+
+  })
+  .catch(error => {
+      console.log(error); // Логируем ошибку, если что-то пошло не так
+      bot.sendMessage(chatId, 'Произошла ошибка при отправке фотографии.');
+  });
+};
+
+function showMainshowApartmentMenuruleskirr11v(chatId) {
+  const photoUrl = 'https://sun9-25.userapi.com/impg/xx9MKtITcOpFU8ci4-9dxAfJIS5DCQjF-tmokg/H8j0xQ2-4_Y.jpg?size=707x2160&quality=95&sign=e0821df54df3ac15a670db375271e412&type=album'; 
+  
+  bot.sendPhoto(chatId, photoUrl)
+  .then(() => {
+      // После успешной отправки фотографии отправляем главное меню
+      bot.sendMessage(chatId, 'Выберете опцию',{
+        reply_markup: {
+            inline_keyboard: [
+                [{ text: 'Вернуться назад', callback_data: 'kirr11v' }]
+            ]
+        }
+    });
+
+  })
+  .catch(error => {
+      console.log(error); // Логируем ошибку, если что-то пошло не так
+      bot.sendMessage(chatId, 'Произошла ошибка при отправке фотографии.');
+  });
+};
+
+function showApartmentMenukirr11l(chatId) {
+  
+  const options = {
+      reply_markup: {
+          inline_keyboard: [
+              [{ text: 'Wi-Fi', callback_data: 'wifi' }],
+              [{ text: 'Инструкция по размещению', callback_data: 'ruleskirr11l' }],
+              [{ text: 'Контакты', callback_data: 'contacts' }],
+              [{ text: 'Вернуться в основное меню', callback_data: 'backToMenu' }]
+          ]
+      }
+  };
+
+  bot.sendMessage(chatId, 'ул. Кирочная д.11 (ЛОФТ)\nВыберите необходимый пункт меню:', options);
+};
+
+
+
 bot.onText(/^\/start/, (msg) => {
+  const chatId = msg.chat.id;
+  const photoUrl = 'https://sun9-61.userapi.com/impg/tKEeq8GTVrv_41_QCM1JEa2ppIqEnNAfDo8qaA/tT8e4gsINUQ.jpg?size=1261x473&quality=95&sign=41f98123fdc7990e0e624ebb72448f83&type=album'; 
     const options = {
       reply_markup: {
         inline_keyboard: [
-          [{ text: 'Просмотр фотографий', callback_data: 'photo' }],
-          [{ text: 'Показать местоположение', callback_data: 'location' }],
-          [{ text: 'Забронировать', callback_data: 'book' }],
+          [{ text: 'ул. Кирочная д.11 (Винтаж)', callback_data: 'kirr11v' }],
+          [{ text: 'ул. Кирочная д.11 (Лофт)', callback_data: 'kirr11l' }]
           // Добавьте другие кнопки основного меню, если нужно
         ]
       }}
-  const chatId = msg.chat.id;
-  bot.sendMessage(chatId, 'Здраствуйте! Я могу Вам помоч забронировать шикарные аппатраменты в Центре Санкт-Птербурга по адресу: ул. Кирочная, д.11.', options);
+      bot.sendPhoto(chatId, photoUrl)
+      .then(() => {
+          // После успешной отправки фотографии отправляем главное меню
+          bot.sendMessage(chatId, 'Здраствуйте! Я Бот который поможет Вам с информмацией по размещению в наших апартаментах FLATS.\nДля продолжения выберите Ваши апартамнты', options);;
+      })
+      .catch(error => {
+          console.log(error); // Логируем ошибку, если что-то пошло не так
+          bot.sendMessage(chatId, 'Произошла ошибка при отправке фотографии.');
+      });
+  
 });
 // Обработчик нажатий на кнопки
 bot.on('callback_query', (callbackQuery) => {
@@ -48,77 +140,49 @@ bot.on('callback_query', (callbackQuery) => {
         }
       };
 
-    
-    function retMainMenu(){return bot.sendMessage(chatId, 'Выберите действие:', backButton)}
-
-    function createCalendar(){
-        const today = new Date();
-        const currentMonth = today.getMonth();
-        const currentYear = today.getFullYear();
-      
-        // Получаем количество дней в месяце
-        const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-      
-        // Создаем массив кнопок
-        let buttons = [];
-        for (let day = 1; day <= daysInMonth; day++) {
-          buttons.push([{ text: `${day}`, callback_data: `chooseDate_${day}` }]);
-        }
-      
-        return {
-          reply_markup: {
-            inline_keyboard: buttons
-          }
-        };
-      }
-    
-
-
     switch (data) {
-      case 'photo':
-        // Массив с URL фотографий
-        const photos = [
-            'https://sun9-30.userapi.com/impg/m2jZdyC09L2ZWsf5eIzxxdhrJ9DI19J-xGXTnQ/1dAEAqAb75k.jpg?size=640x640&quality=95&sign=f8d90c32c87fe52dd47abd3cb522b4e0&type=album', // Замените на реальный URL фотографии
-            'https://sun9-12.userapi.com/impg/gc8nXlc_kylCH_xQJ2IY9bXLOhTa1tA9YmifMQ/67iBRVOwQoI.jpg?size=1280x853&quality=95&sign=61a1f6049d4fb6d2fe07aed80daa344c&type=album', // Замените на реальный URL фотографии
-            'https://sun9-77.userapi.com/impg/fjq5CKauWCz0MmvU03xYCciioeAjCe9NHmqN-Q/gwlAJDSfE9c.jpg?size=1280x853&quality=95&sign=c4bc58373976506374370e8a2d9298b4&type=album', // Замените на реальный URL фотографии
-            'https://sun9-39.userapi.com/impg/A2GiC5KU8YclBseHBHKYh-JKEa-hbzPSSZY1eQ/0X1922wTXTc.jpg?size=1280x853&quality=95&sign=ab6e706bd989ef43bff4dff4e1364404&type=album', // Замените на реальный URL фотографии
-        ];
-
-        // Создаем массив объектов для отправки
-        let  mediaGroup = photos.map(photo => ({
-            type: 'photo',
-            media: photo
-        }));
-
-        // Отправляем группу фотографий
-        bot.sendMediaGroup(message.chat.id, mediaGroup)
-            .then(()=>{
-                retMainMenu()})
-            .catch(error => {
-                console.log(error); // Логируем ошибку, если что-то пошло не так
-            bot.sendMessage(message.chat.id, 'Произошла ошибка при отправке фотографий.');
-            
-        });
-        break;
-      case 'location':
-        const latitude = 59.943791;
-        const longitude = 30.354559;
-        bot.sendLocation(message.chat.id, latitude, longitude)
-            .then(()=>{
-                retMainMenu()})
-            .catch(error => {
-                console.log(error); // Логируем ошибку, если что-то пошло не так
-                bot.sendMessage(message.chat.id, 'Произошла ошибка при отправке местоположения.');
-        });
-        break;
-      case 'book':
-        const calendarKeyboard = createCalendar();
-        bot.sendMessage(message.chat.id, 'Выберите дату бронирования:', calendarKeyboard);
-        break;
       case 'backToMenu':
         // Показываем основное меню
         showMainMenu(chatId);
-        break
+        break;
+      case 'kirr11v':
+        showApartmentMenukirr11v(chatId);
+        break;
+      case 'kirr11l':
+        showApartmentMenukirr11l(chatId);
+        break;  
+      case 'wifi':
+            // Информация о Wi-Fi
+            const wifiInfo = 'Информация о Wi-Fi:\nLogin: Vlad\nPassword: 89050646663';
+            bot.sendMessage(chatId, wifiInfo, {
+                reply_markup: {
+                    inline_keyboard: [
+                        [{ text: 'Вернуться назад', callback_data: 'backToMenu' }]
+                    ]
+                }
+            });
+            break;
+      case 'backToApartmentMenu':
+            // Показываем подменю апартаментов
+            showApartmentMenu(chatId);
+            break;
+      case 'ruleskirr11l':
+        showMainshowApartmentMenuruleskirr11l(chatId);
+        break;
+      case 'ruleskirr11v':
+        showMainshowApartmentMenuruleskirr11v(chatId);
+        break;
+      case 'contacts':
+        const contactsInfo = 'Телефон для связи с администратором:\n +7-995-932-40-22 ';
+        bot.sendMessage(chatId, contactsInfo, {
+            reply_markup: {
+                inline_keyboard: [
+                    [{ text: 'Вернуться назад', callback_data: 'backToMenu' }]
+                ]
+            }
+        });
+          break;
+      
     }
   });
 
