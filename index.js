@@ -1,8 +1,8 @@
 const axios = require('axios');
 const qs = require('qs');
 
-const client_id = 'LQDUbblXq_xoMn2y0uuj';
-const client_secret = 'SRKAie_l4TK70acas4jYBkXFiIWluYWM8YjFsXAh';
+const client_id = '8pWI3DVkMsS-rFjSB5Hu';
+const client_secret = 'DP7Ht1vayJtAw6aNvaPTZUw2N5NYVou1D1m4Lrnw';
 const token_url = 'https://api.avito.ru/token'; // Token URL, как вы указали
 
 // Получаем Access Token
@@ -17,6 +17,7 @@ axios.post(token_url, qs.stringify({
 })
 .then(response => {
   const accessToken = response.data.access_token;
+  console.log('response1', response)
 
   // Здесь вы должны подставить соответствующий user_id и item_id
   const user_id = '376484894'; // Подставьте ID пользователя
@@ -25,10 +26,13 @@ axios.post(token_url, qs.stringify({
   // Используйте свой API endpoint для запроса данных о бронировании
   const bookings_url = `https://api.avito.ru/realty/v1/accounts/${user_id}/items/${item_id}/bookings`;
 
+
   // Здесь делаем запрос на получение данных о бронированиях
   return axios.get(bookings_url, {
     headers: {
-      'Authorization': `Bearer ${accessToken}`
+      'Authorization': `Bearer ${accessToken}`,
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
     }
   });
 })
@@ -38,5 +42,5 @@ axios.post(token_url, qs.stringify({
 })
 .catch(error => {
   // Обработка возможных ошибок запроса
-  console.error('Произошла ошибка:', error);
+  console.error('Произошла ошибка ,блять:', error);
 });
